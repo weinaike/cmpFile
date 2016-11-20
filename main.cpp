@@ -8,7 +8,6 @@ using namespace std;
 
 map <string, string> wordsmap;
 
-
 struct object
 {
     int rect[4];
@@ -52,6 +51,10 @@ vector<object> ObjectFromFile(string path, string filename, string ext)
                     if(i == 4)
                     {
                         pos = buffer.find('\r');
+                        if(pos==string::npos)
+                        {
+                            pos = buffer.find(' ');
+                        }
                         obj.objName = buffer.substr(0,pos);
                     }
                     else
@@ -138,7 +141,6 @@ bool IsOverlap(object obj1,object obj2)
         return false;
     }
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -278,6 +280,3 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
-
-
